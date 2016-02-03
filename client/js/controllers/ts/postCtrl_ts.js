@@ -1,4 +1,6 @@
 /// <reference path="../../../../typings/angularjs/angular.d.ts"/>
+/// <reference path="./service.ts"/>
+//import service = require('./Service');
 var mean;
 (function (mean) {
     var ListPostController = (function () {

@@ -25,8 +25,10 @@
   },
   "subdomain": "mean-tutorial",
   "scripts": {
-    "start": "grunt cssmin",
-    "postinstall": "bower install"
+//    "start": "grunt cssmin",
+    "postinstall": "bower install",
+    "tsc": "tsc -p src -w",
+    "start": "live-server --open"
   },
   "engines": {
     "node": "0.10.x",

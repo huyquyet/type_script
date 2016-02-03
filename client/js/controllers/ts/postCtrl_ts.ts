@@ -1,4 +1,7 @@
 /// <reference path="../../../../typings/angularjs/angular.d.ts"/>
+/// <reference path="./service.ts"/>
+
+//import service = require('./Service');
 
 module mean {
     declare var angular;
