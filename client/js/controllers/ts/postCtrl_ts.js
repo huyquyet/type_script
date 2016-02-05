@@ -18,11 +18,13 @@ var mean;
                 //    message: "Bạn chắc chắn muốn xóa bài viết này ?"
                 //}, (isOk) => {
                 //    if (isOk) {
-                _this.$http.delete(_this.linkDelete + post_id).success(function () {
+                _this.$http.delete(_this.linkDelete + post_id)
+                    .success(function () {
                     console.log(_this.linkDelete + post_id);
                     _this.flash.success = "Xóa bài viết thành công";
                     _this.listPost(_this.linkGet);
-                }).error(function () {
+                })
+                    .error(function () {
                     _this.flash.error = "Có lỗi trong quá trình xóa bài viết";
                 });
                 //    }
@@ -56,13 +58,15 @@ var mean;
             this.createPost_ts = function () {
                 _this.$scope.Proccess_ts = true;
                 if (!$.isEmptyObject(_this.$scope.formData)) {
-                    _this.$http.post(_this.linkCreate, _this.$scope.formData).success(function (data) {
+                    _this.$http.post(_this.linkCreate, _this.$scope.formData)
+                        .success(function (data) {
                         _this.$scope.formData = {};
                         _this.$scope.form.$setPristine();
                         _this.$scope.Proccess_ts = false;
                         _this.flash.success = "Thêm bài viết mới thành công!";
                         _this.$state.go("list");
-                    }).error(function (data) {
+                    })
+                        .error(function (data) {
                         console.log(data);
                         _this.flash.error = "Có lỗi trong quá trình thêm bài viết.";
                     });
@@ -93,7 +97,8 @@ var mean;
             this.linkDetail = "/api/post/detail/";
             this.linkEdit = "/api/post/edit";
             this.detailPost = function (linkDetail, id) {
-                _this.$http.get(linkDetail + id).success(function (data) {
+                _this.$http.get(linkDetail + id)
+                    .success(function (data) {
                     if (data.title != null) {
                         _this.$scope.post = data;
                         _this.$scope.loading = false;
@@ -101,7 +106,8 @@ var mean;
                     else {
                         _this.$state.go('404');
                     }
-                }).error(function () {
+                })
+                    .error(function () {
                     console.log("error");
                 });
                 return _this.$scope.post;
@@ -129,11 +135,13 @@ var mean;
             this.editPost = function () {
                 _this.$scope.Proccess = true;
                 if (!$.isEmptyObject(_this.$scope.post)) {
-                    _this.$http.post(_this.linkEdit, _this.$scope.post).success(function (data) {
+                    _this.$http.post(_this.linkEdit, _this.$scope.post)
+                        .success(function (data) {
                         _this.$scope.Proccess = false;
                         _this.flash.success = "Sửa bài viết thành công!";
                         _this.$state.go('list');
-                    }).error(function () {
+                    })
+                        .error(function () {
                         _this.flash.error = "Có lỗi trong quá trình sửa bài viết.";
                     });
                 }
@@ -148,6 +156,10 @@ var mean;
         return EditPostController;
     })();
     mean.EditPostController = EditPostController;
-    angular.module('postCtrl_ts', []).controller('ListPostController_ts', ['$scope', '$state', 'flash', '$http', ListPostController]).controller('CreatePostController_ts', ['$scope', '$state', 'flash', '$http', CreatePostController]).controller('DetailPostController_ts', ['$scope', '$state', 'flash', '$http', '$stateParams', DetailPostController]).controller('EditPostController_ts', ['$scope', '$state', 'flash', '$http', '$stateParams', EditPostController]);
+    angular.module('postCtrl_ts', [])
+        .controller('ListPostController_ts', ['$scope', '$state', 'flash', '$http', ListPostController])
+        .controller('CreatePostController_ts', ['$scope', '$state', 'flash', '$http', CreatePostController])
+        .controller('DetailPostController_ts', ['$scope', '$state', 'flash', '$http', '$stateParams', DetailPostController])
+        .controller('EditPostController_ts', ['$scope', '$state', 'flash', '$http', '$stateParams', EditPostController]);
 })(mean || (mean = {}));
 //# sourceMappingURL=postCtrl_ts.js.map

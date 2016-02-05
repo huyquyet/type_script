@@ -7,11 +7,11 @@ module mean {
     declare var angular;
 
     export interface Post {
-    _id: string;
-    title: string;
-    description: string;
-    content: string;
-    creationDate: string;
+        _id: string;
+        title: string;
+        description: string;
+        content: string;
+        creationDate: string;
     }
 
     // export interface
@@ -36,7 +36,7 @@ module mean {
         linkDelete:string = "/api/post/delete/";
         static $inject = ['$scope', '$state', 'flash', '$http'];
 
-        constructor(public $scope, public $state, public flash,  public $http) {
+        constructor(public $scope, public $state, public flash, public $http) {
             this.$scope.ts = this;
             this.listPost(this.linkGet);
         }
@@ -110,17 +110,17 @@ module mean {
     export class DetailPostController implements Arguments {
         linkDetail = "/api/post/detail/";
         linkEdit = "/api/post/edit";
-        static $inject = ['$scope', '$state','flash', '$http', '$stateParams'];
+        static $inject = ['$scope', '$state', 'flash', '$http', '$stateParams'];
 
-        constructor(public $scope, public $state, public flash, public $http , public $stateParams) {
+        constructor(public $scope, public $state, public flash, public $http, public $stateParams) {
             //this.$scope.ts = this;
             console.log(this.$stateParams.id);
             console.log(this.linkDetail);
-            console.log(this.linkDetail+this.$stateParams.id);
+            console.log(this.linkDetail + this.$stateParams.id);
             this.detailPost(this.linkDetail, this.$stateParams.id);
         }
 
-        detailPost = (linkDetail, id) : Post => {
+        detailPost = (linkDetail, id):Post => {
 
             this.$http.get(linkDetail + id)
                 .success((data) => {
@@ -139,19 +139,19 @@ module mean {
         };
     }
 
-    export class EditPostController implements Arguments{
+    export class EditPostController implements Arguments {
         linkEdit = "/api/post/edit";
         //static $inject = ['$scope', '$state','flash', '$http','$stateParams'];
 
-        constructor(public $scope, public $state, public flash, public $http , public $stateParams){
+        constructor(public $scope, public $state, public flash, public $http, public $stateParams) {
             this.$scope.ts = this;
             var a = new DetailPostController(this.$scope, this.$state, this.flash, this.$http, this.$stateParams);
         }
 
-        editPost  = () => {
+        editPost = () => {
             this.$scope.Proccess = true;
             if (!$.isEmptyObject(this.$scope.post)) {
-                this.$http.post(this.linkEdit,this.$scope.post)
+                this.$http.post(this.linkEdit, this.$scope.post)
                     .success((data) => {
                         this.$scope.Proccess = false;
                         this.flash.success = "Sửa bài viết thành công!";
@@ -167,10 +167,10 @@ module mean {
             }
         }
     }
-     angular.module('postCtrl_ts', [])
-        .controller('ListPostController_ts', ['$scope', '$state', 'flash','$http',  ListPostController])
-        .controller('CreatePostController_ts', ['$scope', '$state', 'flash','$http', CreatePostController])
-        .controller('DetailPostController_ts', ['$scope', '$state', 'flash', '$http', '$stateParams',  DetailPostController])
-        .controller('EditPostController_ts', ['$scope', '$state', 'flash', '$http','$stateParams', EditPostController]);
+    angular.module('postCtrl_ts', [])
+        .controller('ListPostController_ts', ['$scope', '$state', 'flash', '$http', ListPostController])
+        .controller('CreatePostController_ts', ['$scope', '$state', 'flash', '$http', CreatePostController])
+        .controller('DetailPostController_ts', ['$scope', '$state', 'flash', '$http', '$stateParams', DetailPostController])
+        .controller('EditPostController_ts', ['$scope', '$state', 'flash', '$http', '$stateParams', EditPostController]);
 
 }
