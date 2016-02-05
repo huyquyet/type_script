@@ -3,3 +3,5 @@ public/libs/
 *.DS_Store
 npm-debug.log
 thumb.db
+
+.idea/workspace.xml

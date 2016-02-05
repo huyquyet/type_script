@@ -7,11 +7,11 @@ module mean {
     declare var angular;
 
     export interface Post {
-    _id: string;
-    title: string;
-    description: string;
-    content: string;
-    creationDate: string;
+        _id: string;
+        title: string;
+        description: string;
+        content: string;
+        creationDate: string;
     }
 
     // export interface
@@ -124,6 +124,7 @@ module mean {
         detailPost(linkDetail, id){
             //console.log(linkDetail + id);
             this.Post_ts.detail_ts(linkDetail, id)
+
                 .success((data) => {
                     if (data.title != null) {
                         this.$scope.post = data;
@@ -140,13 +141,14 @@ module mean {
         }
     }
 
-    export class EditPostController implements Arguments{
+    export class EditPostController implements Arguments {
         linkEdit = "/api/post/edit";
         linkDetail = "/api/post/detail/";
         static $inject = ['$scope', '$state', 'flash', '$http', '$stateParams','Post_ts'];
 
         constructor(public $scope, public $state, public flash, public $http, public $stateParams, public Post_ts) {
-            this.$scope.ts = this;
+
+                       this.$scope.ts = this;
             //var a = new DetailPostController(this.$scope, this.$state, this.flash, this.$stateParams, this.Post_ts);
             $scope.data = {};
             this.loadData(this.linkDetail, this.$stateParams.id);
@@ -162,10 +164,11 @@ module mean {
                 });
         }
 
-        editPost  = () => {
+        editPost = () => {
             this.$scope.Proccess = true;
             if (!$.isEmptyObject(this.$scope.data)) {
                 this.Post_ts.edit_ts(this.linkEdit, this.$scope.data)
+
                     .success((data) => {
 
                         this.$scope.Proccess = false;
@@ -187,5 +190,6 @@ module mean {
          .controller('CreatePostController_ts', ['$scope', '$state', 'flash', 'Post_ts', CreatePostController])
          .controller('DetailPostController_ts', ['$scope', '$state', 'flash', '$stateParams', 'Post_ts', DetailPostController])
          .controller('EditPostController_ts', ['$scope', '$state', 'flash', '$stateParams', 'Post_ts', EditPostController]);
+
 
 }

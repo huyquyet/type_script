@@ -1,7 +1,7 @@
 {
   "name": "MEAN-Tutorial",
   "version": "0.0.1",
-  "author": "SangNguyen",
+  "author": "NguyenHuyQuyet",
   "main": "server.js",
   "dependencies": {
     "bower": "*",
@@ -18,10 +18,6 @@
     "grunt-contrib-jshint": "^0.10.0",
     "grunt-contrib-uglify": "^0.6.0",
     "grunt-contrib-watch": "^0.6.1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/sangnguyenplus/mean-tutorial"
   },
   "subdomain": "mean-tutorial",
   "scripts": {
