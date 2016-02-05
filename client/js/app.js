@@ -10,7 +10,7 @@
     'ui.bootstrap',
     'appModal',
     'appRoutes',
-    //'appDirectives',
+    'appDirectives',
     'appFilters',
     'appServices',
     'baseCtrl',

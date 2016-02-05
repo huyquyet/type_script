@@ -7,7 +7,7 @@ angular.module('appServices', [])
             templateUrl: '/views/modal/confirm.html',
             controller: 'modal.confirm',
             backdrop:'static',
-            /*scope:$scope,*/
+            scope:$scope,
             resolve: {
                 data: function () {
                     return data;

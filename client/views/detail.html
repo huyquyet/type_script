@@ -6,6 +6,8 @@
         <i class="fa fa-calendar"></i> <span ng-bind="post.creationDate | fromNow"></span>
         </span>
     </div>
+
     <div class="post-content text-justify" ng-bind="post.content | unsafe">
     </div>
+     <a ui-sref="edit({id: post._id})" class="btn btn-info">Sửa</a>
 </div>

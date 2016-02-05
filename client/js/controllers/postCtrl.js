@@ -1,8 +1,8 @@
 angular.module('postCtrl', [])
     .controller('ListPostController', ['$scope', '$state', 'flash', 'Post',
-        function ($scope, $state, flash, appAlert, Post) {
-            Post.get().success(function (data) {
-                $scope.list_posts = data;
+        function ($scope, $state, flash, Post, appAlert) {
+            Post.get('/api/post/list').success(function (data) {
+                $scope.posts = data;
             })
                 .error(function () {
                     $scope.error = 'Có lỗi trong quá trình tai bài viết';
@@ -26,8 +26,8 @@ angular.module('postCtrl', [])
                 });
             };
         }])
-    .controller('CreatePostController', ['$scope', '$state', 'flash', 'Post',
-        function ($scope, $state, flash, Post) {
+    .controller('CreatePostController', ['$scope', '$state', 'flash', 'Post', '$http',
+        function ($scope, $state, flash, Post, $http) {
             $scope.formData = {};
 
             $scope.createPost = function () {

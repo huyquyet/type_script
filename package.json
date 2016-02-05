@@ -21,7 +21,6 @@
   },
   "subdomain": "mean-tutorial",
   "scripts": {
-//    "start": "grunt cssmin",
     "postinstall": "bower install",
     "tsc": "tsc -p src -w",
     "start": "live-server --open"

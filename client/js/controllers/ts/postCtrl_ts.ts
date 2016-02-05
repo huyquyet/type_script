@@ -34,7 +34,7 @@ module mean {
     export class ListPostController implements Arguments {
         linkGet:string = "/api/post/list";
         linkDelete:string = "/api/post/delete/";
-        static $inject = ['$scope', '$state', 'flash', '$http', 'Post_ts'];
+        static $inject = ['$scope', '$state', 'flash', 'Post_ts'];
 
         constructor(public $scope, public $state, public flash, public Post_ts) {
             this.$scope.ts = this;
@@ -144,9 +144,9 @@ module mean {
     export class EditPostController implements Arguments {
         linkEdit = "/api/post/edit";
         linkDetail = "/api/post/detail/";
-        static $inject = ['$scope', '$state', 'flash', '$http', '$stateParams','Post_ts'];
+        static $inject = ['$scope', '$state', 'flash', '$http', '$stateParams', 'Post_ts'];
 
-        constructor(public $scope, public $state, public flash, public $http, public $stateParams, public Post_ts) {
+        constructor(public $scope, public $state, public flash, public $stateParams, public Post_ts) {
 
                        this.$scope.ts = this;
             //var a = new DetailPostController(this.$scope, this.$state, this.flash, this.$stateParams, this.Post_ts);
