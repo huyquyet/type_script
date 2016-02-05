@@ -1,4 +1,3 @@
-"use strict";
 var mongodb = require("mongodb");
 var server = new mongodb.Server("localhost", 27017, { auto_reconnect: true });
 var db = new mongodb.Db("mean", server, { w: 1 });
