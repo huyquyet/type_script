@@ -1,5 +1,5 @@
 angular.module('appServices', [])
-.service('appAlert',['$modal','$http', function($modal,$http) {
+    .service('appAlert', ['$modal', '$http', function ($modal) {
 
     this.confirm=function(data,callback) {
         /*begin modal*/

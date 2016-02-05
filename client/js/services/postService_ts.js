@@ -1,15 +1,31 @@
 var mean;
 (function (mean) {
     var Post = (function () {
-        //static $inject = ['$http'];
         function Post($http) {
-            var _this = this;
             this.$http = $http;
-            this.get_ts = function (url) {
-                // '/api/post/list'
-                return _this.$http.get(url);
+            return {
+                get_ts: function (url) {
+                    return $http.get(url);
+                },
+                create_ts: function (url, data) {
+                    //  '/api/post/create'
+                    return $http.post(url, data);
+                },
+                detail_ts: function (url, id) {
+                    //  'api/post/detail/
+                    return $http.get(url + id);
+                },
+                delete_ts: function (url, id) {
+                    //  '/api/post/delete/'
+                    return $http.delete(url + id);
+                },
+                edit_ts: function (url, data) {
+                    //  '/api/post/edit'
+                    return $http.post(url, data);
+                }
             };
         }
+        Post.$inject = ['$http'];
         return Post;
     })();
     mean.Post = Post;

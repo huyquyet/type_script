@@ -1,7 +1,7 @@
 /// <reference path="../../../../typings/angularjs/angular.d.ts"/>
-/// <reference path="./service.ts"/>
+// / <reference path="./service.ts"/>
 
-//import service = require('./Service');
+//import some = require('Funnuy');
 
 module mean {
     declare var angular;
@@ -24,9 +24,9 @@ module mean {
         linkEdit?: string;
         linkDelete?: string;
         flash?: any;
-        //$modal?: any;
+        $modal?: any;
         $http?: any;
-        //appAlert?: any;
+        appAlert?: any;
         Post_ts?: any;
         $stateParams?:any;
     }
@@ -34,15 +34,16 @@ module mean {
     export class ListPostController implements Arguments {
         linkGet:string = "/api/post/list";
         linkDelete:string = "/api/post/delete/";
-        static $inject = ['$scope', '$state', 'flash', '$http'];
+        static $inject = ['$scope', '$state', 'flash', '$http', 'Post_ts'];
 
-        constructor(public $scope, public $state, public flash,  public $http) {
+        constructor(public $scope, public $state, public flash, public Post_ts) {
             this.$scope.ts = this;
             this.listPost(this.linkGet);
+            //some.Fun.get_data();
         }
 
         listPost(linkGet) {
-            this.$http.get(linkGet).success((data) => {
+            this.Post_ts.get_ts(linkGet).success((data) => {
                 console.log(data);
                 this.$scope.posts = data;
             });
@@ -51,13 +52,13 @@ module mean {
             //});
         }
 
-        deletePost_ts = (post_id) => {
+        deletePost_ts(post_id) {
             //this.appAlert.confirm({
             //    title: "Xác nhận xóa",
             //    message: "Bạn chắc chắn muốn xóa bài viết này ?"
             //}, (isOk) => {
             //    if (isOk) {
-            this.$http.delete(this.linkDelete + post_id)
+            this.Post_ts.delete_ts(this.linkDelete, post_id)
                 .success(() => {
                     console.log(this.linkDelete + post_id);
                     this.flash.success = "Xóa bài viết thành công";
@@ -66,17 +67,18 @@ module mean {
                 .error(() => {
                     this.flash.error = "Có lỗi trong quá trình xóa bài viết";
                 });
-            //    }
-            //});
         }
+
+        //    });
+        //}
     }
 
     export class CreatePostController implements Arguments {
         linkCreate = "/api/post/create";
         //linkDetail = "/api/post/detail/";
-        static $inject = ['$scope', '$state', 'flash', '$http',];
+        static $inject = ['$scope', '$state', 'flash', '$http', 'Post_ts'];
 
-        constructor(public $scope, public $state, public flash, public $http) {
+        constructor(public $scope, public $state, public flash, public $http, public Post_ts) {
             $scope.Process_ts = false;
             $scope.formData = {};
             //$scope.createPost(this.linkCreate);
@@ -87,7 +89,7 @@ module mean {
         createPost_ts = () => {
             this.$scope.Proccess_ts = true;
             if (!$.isEmptyObject(this.$scope.formData)) {
-                this.$http.post(this.linkCreate, this.$scope.formData)
+                this.Post_ts.create_ts(this.linkCreate, this.$scope.formData)
                     .success((data) => {
                         this.$scope.formData = {};
                         this.$scope.form.$setPristine();
@@ -109,20 +111,19 @@ module mean {
 
     export class DetailPostController implements Arguments {
         linkDetail = "/api/post/detail/";
-        linkEdit = "/api/post/edit";
-        static $inject = ['$scope', '$state','flash', '$http', '$stateParams'];
+        static $inject = ['$scope', '$state', 'flash', '$http', '$stateParams', 'Post_ts'];
 
-        constructor(public $scope, public $state, public flash, public $http , public $stateParams) {
+        constructor(public $scope, public $state, public flash, public $stateParams, public Post_ts) {
             //this.$scope.ts = this;
             console.log(this.$stateParams.id);
             console.log(this.linkDetail);
-            console.log(this.linkDetail+this.$stateParams.id);
+
             this.detailPost(this.linkDetail, this.$stateParams.id);
         }
 
-        detailPost = (linkDetail, id) : Post => {
-
-            this.$http.get(linkDetail + id)
+        detailPost(linkDetail, id){
+            //console.log(linkDetail + id);
+            this.Post_ts.detail_ts(linkDetail, id)
                 .success((data) => {
                     if (data.title != null) {
                         this.$scope.post = data;
@@ -135,24 +136,38 @@ module mean {
                 .error(() => {
                     console.log("error");
                 });
-            return this.$scope.post;
-        };
+            //return this.$scope.post;
+        }
     }
 
     export class EditPostController implements Arguments{
         linkEdit = "/api/post/edit";
-        //static $inject = ['$scope', '$state','flash', '$http','$stateParams'];
+        linkDetail = "/api/post/detail/";
+        static $inject = ['$scope', '$state', 'flash', '$http', '$stateParams','Post_ts'];
 
-        constructor(public $scope, public $state, public flash, public $http , public $stateParams){
+        constructor(public $scope, public $state, public flash, public $http, public $stateParams, public Post_ts) {
             this.$scope.ts = this;
-            var a = new DetailPostController(this.$scope, this.$state, this.flash, this.$http, this.$stateParams);
+            //var a = new DetailPostController(this.$scope, this.$state, this.flash, this.$stateParams, this.Post_ts);
+            $scope.data = {};
+            this.loadData(this.linkDetail, this.$stateParams.id);
+        }
+
+        loadData(linkDetail, id) {
+            this.Post_ts.detail_ts(linkDetail, id)
+                .success((data) => {
+                    if (data.title != null) {
+                        this.$scope.data = data;
+                        //this.$scope.loading = false;
+                    }
+                });
         }
 
         editPost  = () => {
             this.$scope.Proccess = true;
-            if (!$.isEmptyObject(this.$scope.post)) {
-                this.$http.post(this.linkEdit,this.$scope.post)
+            if (!$.isEmptyObject(this.$scope.data)) {
+                this.Post_ts.edit_ts(this.linkEdit, this.$scope.data)
                     .success((data) => {
+
                         this.$scope.Proccess = false;
                         this.flash.success = "Sửa bài viết thành công!";
                         this.$state.go('list');
@@ -168,9 +183,9 @@ module mean {
         }
     }
      angular.module('postCtrl_ts', [])
-        .controller('ListPostController_ts', ['$scope', '$state', 'flash','$http',  ListPostController])
-        .controller('CreatePostController_ts', ['$scope', '$state', 'flash','$http', CreatePostController])
-        .controller('DetailPostController_ts', ['$scope', '$state', 'flash', '$http', '$stateParams',  DetailPostController])
-        .controller('EditPostController_ts', ['$scope', '$state', 'flash', '$http','$stateParams', EditPostController]);
+         .controller('ListPostController_ts', ['$scope', '$state', 'flash', 'Post_ts', ListPostController])
+         .controller('CreatePostController_ts', ['$scope', '$state', 'flash', 'Post_ts', CreatePostController])
+         .controller('DetailPostController_ts', ['$scope', '$state', 'flash', '$stateParams', 'Post_ts', DetailPostController])
+         .controller('EditPostController_ts', ['$scope', '$state', 'flash', '$stateParams', 'Post_ts', EditPostController]);
 
 }

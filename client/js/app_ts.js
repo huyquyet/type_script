@@ -12,6 +12,7 @@ var app = angular.module('Mean', [
     'appServices',
     'baseCtrl_ts',
     'postCtrl_ts',
+    'postService_ts'
 ]);
 app.config(['flashProvider', function (flashProvider) {
     flashProvider.errorClassnames.push('alert-danger');

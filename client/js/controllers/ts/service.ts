@@ -74,8 +74,20 @@
 //        }
 //    }
 //}
+//
+//export class Fun {
+//    function get_data:() => {
+//        console.log("helo");
+//    }
+//}
 
-
-function get_ts($http, url) {
-    return $http.get(url);
-}
+//function get_ts($http, url) {
+//    return $http.get(url);
+//}
+//export module Funnuy {
+//    export class Fun {
+//        get_data(){
+//            console.log("Hello");
+//        }
+//    }
+//}

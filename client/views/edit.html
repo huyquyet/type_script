@@ -3,15 +3,15 @@
   <form name="form" ng-submit="ts.editPost()">
   	<div class="form-group">
 	  	<label for="title" class="control-label">Tiêu đề</label>
-	  	<input class="form-control" name="title" ng-model="post.title" />
+	  	<input class="form-control" name="title" ng-model="data.title" />
   	</div>
   	<div class="form-group">
 	  	<label for="description" class="control-label">Mô tả ngắn</label>
-	  	<textarea class="form-control" name="description" ng-model="post.description"></textarea>
+	  	<textarea class="form-control" name="description" ng-model="data.description"></textarea>
   	</div>
   	<div class="form-group">
 	  	<label for="content" class="control-label">Nội dung</label>
-	  	<textarea class="form-control" rows="10" name="content" ng-model="post.content"></textarea>
+	  	<textarea class="form-control" rows="10" name="content" ng-model="data.content"></textarea>
   	</div>
   	<div class="form-group">
   	<button type="submit" name="submit" class="btn btn-primary"> <i class="fa fa-edit" ng-show="!Proccess"></i><i class="fa fa-spinner fa-spin" ng-show="Proccess" ></i>Cập nhật</button>
