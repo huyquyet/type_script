@@ -131,13 +131,13 @@ module mean {
                         this.$scope.loading = false;
                     }
                     else {
-                        this.$state.go('404');
+                        this.$state.go("404");
+                        console.log(this.$stateParams.id);
                     }
                 })
                 .error(() => {
                     console.log("error");
                 });
-            //return this.$scope.post;
         }
     }
 
@@ -149,7 +149,6 @@ module mean {
         constructor(public $scope, public $state, public flash, public $stateParams, public Post_ts) {
 
                        this.$scope.ts = this;
-            //var a = new DetailPostController(this.$scope, this.$state, this.flash, this.$stateParams, this.Post_ts);
             $scope.data = {};
             this.loadData(this.linkDetail, this.$stateParams.id);
         }
@@ -160,6 +159,8 @@ module mean {
                     if (data.title != null) {
                         this.$scope.data = data;
                         //this.$scope.loading = false;
+                    }else{
+                      this.$state.go("404");
                     }
                 });
         }

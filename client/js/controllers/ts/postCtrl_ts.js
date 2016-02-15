@@ -104,12 +104,12 @@ var mean;
                     _this.$scope.loading = false;
                 }
                 else {
-                    _this.$state.go('404');
+                    _this.$state.go("404");
+                    console.log(_this.$stateParams.id);
                 }
             }).error(function () {
                 console.log("error");
             });
-            //return this.$scope.post;
         };
         DetailPostController.$inject = ['$scope', '$state', 'flash', '$http', '$stateParams', 'Post_ts'];
         return DetailPostController;
@@ -142,7 +142,6 @@ var mean;
                 }
             };
             this.$scope.ts = this;
-            //var a = new DetailPostController(this.$scope, this.$state, this.flash, this.$stateParams, this.Post_ts);
             $scope.data = {};
             this.loadData(this.linkDetail, this.$stateParams.id);
         }
@@ -151,6 +150,9 @@ var mean;
             this.Post_ts.detail_ts(linkDetail, id).success(function (data) {
                 if (data.title != null) {
                     _this.$scope.data = data;
+                }
+                else {
+                    _this.$state.go("404");
                 }
             });
         };
