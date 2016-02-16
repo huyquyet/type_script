@@ -131,7 +131,7 @@ var mean;
                     _this.Post_ts.edit_ts(_this.linkEdit, _this.$scope.data).success(function (data) {
                         _this.$scope.Proccess = false;
                         _this.flash.success = "Sửa bài viết thành công!";
-                        _this.$state.go('list');
+                        _this.$state.transitionTo('list', { reload: true, inherit: false, notify: false });
                     }).error(function () {
                         _this.flash.error = "Có lỗi trong quá trình sửa bài viết.";
                     });

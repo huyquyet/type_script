@@ -11,7 +11,7 @@
       'angular-flash.flash-alert-directive',
       'ui.bootstrap',
       //'appModal',
-      'appRoutes',
+      'appRoutes_ts',
       //'appDirectives',
       'appFilters',
       'appServices',

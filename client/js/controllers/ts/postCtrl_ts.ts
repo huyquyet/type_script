@@ -174,7 +174,7 @@ module mean {
 
                         this.$scope.Proccess = false;
                         this.flash.success = "Sửa bài viết thành công!";
-                        this.$state.go('list');
+                        this.$state.transitionTo('list', {reload: true, inherit: false, notify: false });
                     })
                     .error(() => {
                         this.flash.error = "Có lỗi trong quá trình sửa bài viết.";

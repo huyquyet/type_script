@@ -6,11 +6,19 @@
             <h4><a ui-sref="detail({id: post._id})" ng-bind="post.title"></a></h4>
 
             <p ng-bind="post.description"></p>
-            <a ui-sref="edit({id: post._id})" class="btn btn-info">Sửa</a>
-            <a ui-sref="detail({id: post._id})" class="btn btn-info">Chi tiet</a>
+            <!--<a ui-sref="edit({id: post._id})" class="btn btn-info">Sửa</a>-->
+            <!--<a ui-sref="detail({id: post._id})" class="btn btn-info">Chi tiet</a>-->
+
+            <a ui-sref=".edit({id: post._id})" class="btn btn-info">Sửa</a>
+            <a ui-sref=".detail({id: post._id})" class="btn btn-info">Chi tiet</a>
             <a ng-click="ts.deletePost_ts(post._id)" class="btn btn-danger">Xóa</a>
+
         </div>
         <hr>
     </div>
     <!--<p ng-bind="error"></p>-->
+</div>
+<div class="col-xs-3 ">
+    <!--<h2 class="text-center">Bài viết</h2>-->
+    <div ui-view class="ui-view-container"></div>
 </div>

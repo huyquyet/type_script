@@ -11,10 +11,35 @@ angular.module('appRoutes', []).config(['$stateProvider', '$urlRouterProvider', 
              })
              .state('list', {
                  url: "/list-post",
-                 templateUrl: "/views/list.html",
-                 controller: 'ListPostController_ts'
+                 views : {
+                     //"view_list": {
+                     //    templateUrl: "/views/list.html",
+                     //    controller: 'ListPostController_ts'
+                     //},
+                     "": {
+                         templateUrl: "/views/list.html",
+                         controller: 'ListPostController_ts'
+                     }
+                 }
+                 //controller: 'ListPostController_ts'
                  //controllerAs:"list-post"
              })
+             .state('list.detail', {
+                 url: "/detail-post/:id",
+                 templateUrl: '/views/detail.html',
+                 controller: 'DetailPostController_ts'
+             })
+             .state('list.edit', {
+                 url: "/edit-post/:id",
+                 templateUrl: '/views/edit.html',
+                 controller: 'EditPostController_ts'
+             })
+             //.state('list', {
+             //    url: "/list-post",
+             //    templateUrl: "/views/list.html",
+             //    controller: 'ListPostController_ts'
+             //    //controllerAs:"list-post"
+             //})
              .state('create', {
                  url: "/create-post",
                  templateUrl: "/views/create.html",
