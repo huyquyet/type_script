@@ -63,4 +63,6 @@ module AppRouter {
         }
     }
 }
-angular.module('appRoutes_ts', []).config(['$stateProvider', '$urlRouterProvider', '$locationProvider', AppRouter.Router]);
+angular.module('appRoutes_ts', []).config(['$stateProvider', '$urlRouterProvider', '$locationProvider', ($stateProvider, $urlRouterProvider, $locationProvider) => {
+    return new AppRouter.Router($stateProvider, $urlRouterProvider, $locationProvider);
+}]);

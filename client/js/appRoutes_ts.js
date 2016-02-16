@@ -63,5 +63,7 @@ var AppRouter;
     })();
     AppRouter.Router = Router;
 })(AppRouter || (AppRouter = {}));
-angular.module('appRoutes_ts', []).config(['$stateProvider', '$urlRouterProvider', '$locationProvider', AppRouter.Router]);
+angular.module('appRoutes_ts', []).config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function ($stateProvider, $urlRouterProvider, $locationProvider) {
+    return new AppRouter.Router($stateProvider, $urlRouterProvider, $locationProvider);
+}]);
 //# sourceMappingURL=appRoutes_ts.js.map
